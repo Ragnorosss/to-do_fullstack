@@ -1,0 +1,28 @@
+# Игнорируем зависимости
+node_modules/
+
+# Игнорируем логи и временные файлы
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Игнорируем .env-файлы с секретными ключами
+.env
+.env.local
+.env.*.local
+
+# Игнорируем кэш-папки
+.cache/
+.next/
+out/
+
+# Игнорируем build-файлы
+dist/
+build/
+
+# Игнорируем файлы редакторов
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
