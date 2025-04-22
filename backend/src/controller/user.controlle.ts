@@ -17,7 +17,7 @@ export const registration = async (req: Request, res: Response) => {
 
     const userExist = await User.findOne({ userName });
     if (userExist) {
-      return res.status(403).json({ message: 'User already exists' });
+      res.status(403).json({ message: 'User already exists' });
     }
 
     const hashPassword = await argon.hash(password);
@@ -41,12 +41,12 @@ export const login = async (req: Request, res: Response) => {
 
     const userExist = await User.findOne({ email });
     if (!userExist) {
-      return res.status(404).json({ message: 'User does not exist' });
+       res.status(404).json({ message: 'User does not exist' });
     }
 
-    const passMatch = await argon.verify(userExist.password, password);
+    const passMatch = await argon.verify(userExist?.password || "", password);
     if (!passMatch) {
-      return res.status(401).json({ message: 'Authentication failed' });
+       res.status(401).json({ message: 'Authentication failed' });
     }
 
     res.status(200).json({ message: 'Login successful', user: userExist });
