@@ -10,4 +10,4 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   }
 );
 
-export const MInput = motion(Input);
+export const MInput = motion.create(Input);

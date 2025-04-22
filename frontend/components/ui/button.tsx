@@ -14,4 +14,4 @@ export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
   }
 );
 
-export const MButton = motion(Button);
+export const MButton = motion.create(Button);

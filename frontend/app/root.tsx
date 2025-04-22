@@ -1,13 +1,9 @@
-import {
-  Links,
-  Meta,
-  Scripts,
-  ScrollRestoration,
-} from 'react-router';
+import { Links, Meta, Scripts, ScrollRestoration } from 'react-router';
 import type { Route } from './+types/root';
 import './app.css';
 import AnimatedOutlet from 'components/layout/OutletAnimation';
-import { ErrorPage } from 'components/screen/Error';
+import { ErrorPage } from 'components/screen/error';
+import { RedirectMiddleware } from 'middleware/redirect.middleware';
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -32,7 +28,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <RedirectMiddleware>{children}</RedirectMiddleware>
         <ScrollRestoration />
         <Scripts />
       </body>

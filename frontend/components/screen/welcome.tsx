@@ -1,9 +1,11 @@
 import { list } from 'components/lists/welcome-list';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router';
+import useAuth from 'store/zustand';
 import { childVariants, pageVariants } from 'variants/variants';
 
 export function Welcome() {
+  const { isAuth } = useAuth();
   return (
     <motion.main
       initial="initial"
@@ -39,18 +41,29 @@ export function Welcome() {
         variants={childVariants}
         className="flex gap-5 justify-between"
       >
-        <Link
-          to={'/auth/log-in'}
-          className="font-semibold text-2xl border-2 py-5 px-14 rounded-4xl transition-all duration-[350ms] hover:text-black hover:bg-white"
-        >
-          Log in
-        </Link>
-        <Link
-          to={'/auth/sign-up'}
-          className="font-semibold text-2xl border-2 py-5 px-14 rounded-4xl transition-all duration-[350ms] hover:text-black hover:bg-white"
-        >
-          Sign up
-        </Link>
+        {isAuth ? (
+          <Link
+            to={'/to-do'}
+            className="font-semibold text-2xl border-2 py-5 px-14 rounded-4xl transition-all duration-[350ms] hover:text-black hover:bg-white"
+          >
+            Your To do list
+          </Link>
+        ) : (
+          <>
+            <Link
+              to={'/auth/log-in'}
+              className="font-semibold text-2xl border-2 py-5 px-14 rounded-4xl transition-all duration-[350ms] hover:text-black hover:bg-white"
+            >
+              Log in
+            </Link>
+            <Link
+              to={'/auth/sign-up'}
+              className="font-semibold text-2xl border-2 py-5 px-14 rounded-4xl transition-all duration-[350ms] hover:text-black hover:bg-white"
+            >
+              Sign up
+            </Link>
+          </>
+        )}
       </motion.div>
     </motion.main>
   );
